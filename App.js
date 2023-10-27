@@ -1,12 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Navigation from './src/navigation/Navigation'
+
+import ProfileScreen from "./src/screens/favorite/FavoriteScreen";
+import BillScreen from './src/screens/profile/BillScreen'
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Changarrito" component={Navigation} />
+        <Drawer.Screen name="Perfil" component={ProfileScreen} />
+        <Drawer.Screen name="Pagos" component={BillScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
