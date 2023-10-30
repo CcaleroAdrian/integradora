@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default function Offers() {
@@ -16,4 +16,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-

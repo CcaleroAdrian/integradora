@@ -1,16 +1,33 @@
-import React from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import ProfileScreen from "../screens/profile/ProfileScreen";
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, Pressable, Button } from 'react-native';
+import Login from '../../components/Auth/Login/Login';
+import MyPerfil from '../../components/PerfilComp/MyPerfil';
 
-const Drawer = createDrawerNavigator();
 
 export default function Profile() {
+  const [handlePage, setHandlePage] = useState(true);
+
+  const onHandlePage = () => {
+    setHandlePage((prevState) => !prevState)
+  }
 
   return (
-    <Drawer.Navigator initialRouteName="Profile">
-      <Drawer.Screen 
-        name="Profile" 
-        component={ProfileScreen} />
-    </Drawer.Navigator>
+    <View style={{ flex: 1 }} >
+      {handlePage ?
+        <MyPerfil />
+        :
+        <Login />
+      }
+      <Button title="Cambiar pagina" onPress={onHandlePage} color="#FF5454" />
+    </View>
+
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

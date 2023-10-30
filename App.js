@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Navigation from './src/navigation/Navigation'
 
-import ProfileScreen from "./src/screens/favorite/FavoriteScreen";
+import ProfileScreen from "./src/screens/profile/ProfileScreen";
 import BillScreen from './src/screens/profile/BillScreen'
 
 const Drawer = createDrawerNavigator();
