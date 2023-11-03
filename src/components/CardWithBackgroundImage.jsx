@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     margin: 10,
-    height: 250, // Ajusta la altura de la tarjeta según tus necesidades
+    height: '100%', // Ajusta la altura de la tarjeta según tus necesidades
+    width: 250,
+
   },
   backgroundImage: {
     width: '100%',

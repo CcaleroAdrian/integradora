@@ -45,10 +45,12 @@ export default function HomeScreen() {
 
     return (
     <ScrollView contentContainerStyle={styles.scroll}>
-      <CardWithImage imageSource={require('../../assets/comida.jpg')} text="Bienvenido"/>
+      <View style={styles.home}>
+        <CardWithImage imageSource={require('../../assets/comida.jpg')} text="Bienvenido"/>
+      </View>
+
       {/** Cuadro de busqueda -> exportar como componente */}
-      
-      <View style={styles.container}>
+      <View style={styles.search}>
         <Icon name="search" color="gray" size={20} />
         <TextInput
           style={styles.input}
@@ -56,17 +58,17 @@ export default function HomeScreen() {
           value={searchQuery}
         />
       </View>
+
       {/** Categorias */}
       <View style={styles.seccion_categorias}>
+        <Text style={styles.title}>Categorias</Text>
         <FlatList
           data={data}
           horizontal={true} // Configura el desplazamiento horizontal
           contentContainerStyle={styles.contentContainer}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <View style={styles.item}>
             <CategoryCard imageSource={item.imagen} title={item.text}/>
-            </View>
           )}
         />
       </View>
@@ -81,46 +83,53 @@ export default function HomeScreen() {
           contentContainerStyle={styles.contentContainer}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <View style={styles.item}>
-              <CardWithBackgroundImage imageSource={require('../../assets/categorias/desayunos.png')} title={item.title} description={item.description}/>
-            </View>
+              <CardWithBackgroundImage imageSource={require('../../assets/categorias/comida_mexicana.jpg')} title={item.title} description={item.description}/>
           )}
         />
       </View>
+
       {/** <FoodCard name={productos[0].title} imageSource={productos[0].imagen} price={productos[0].price} ranking={productos[0].ranking}/>*/}
-      <SafeAreaView>
+      <View style={{margin: 10}}>
+      <Text style={styles.title}>Lo más nuevo</Text>
+        {/* 
+        
         <FlatList
             data={productos}
             contentContainerStyle={styles.contentContainer}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <View style={styles.item}>
                 <FoodCard name={item.title} imageSource={item.imagen} price={item.price} ranking={item.ranking}/>
-              </View>
             )}
           />
-      </SafeAreaView>
+        */}
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  home: {
+    height:120, 
+    width:'100%',
+    marginBottom: '30%',
+  },
   scroll: {
     flexGrow: 1,
     padding: 20,
     justifyContent: 'center',
   },
-  container: {
+  search: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 50,
     paddingHorizontal: 5,
-    margin: 10,
+    height: 50,
+    width: '100%',
+    marginBottom: 10
   },
   input: {
-    flex: 1,
     fontSize: 18,
   },
   searchIcon: {
@@ -129,16 +138,18 @@ const styles = StyleSheet.create({
   seccion: {
     paddingHorizontal: 5,
     margin: 10,
+    height: 250,
   },
   seccion_categorias: {
     flex: 1,
-    height:150,
+    height: 160
   },
   contentContainer: {
-    height: '100%', // Asegura que el contenido de FlatList tenga la misma altura que los elementos
+    height: '100%',
   },
   title:{
     fontSize: 20,
+    fontWeight: 'bold'
   },
   item: {
     width: 120, // Ancho de cada elemento de la lista
