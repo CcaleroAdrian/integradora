@@ -11,8 +11,9 @@ export default function FavoritesNavigation() {
       <Stack.Screen
         name="Favorite"
         component={FavoriteScreen}
-        options={{ 
-            headerTransparent: true,
+        options={{
+          title: "",
+          headerTransparent: true,
         }}
       />
     </Stack.Navigator>

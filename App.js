@@ -6,6 +6,8 @@ import Navigation from './src/navigation/Navigation'
 
 import ProfileScreen from "./src/screens/profile/ProfileScreen";
 import BillScreen from './src/screens/profile/BillScreen'
+import FoodScreen from './src/screens/Food/FoodScreen';
+import OrderScreen from './src/screens/Order/OrderScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,6 +18,8 @@ export default function App() {
         <Drawer.Screen name="Changarrito" component={Navigation} />
         <Drawer.Screen name="Perfil" component={ProfileScreen} />
         <Drawer.Screen name="Pagos" component={BillScreen} />
+        <Drawer.Screen name="Comida" component={FoodScreen} />
+        <Drawer.Screen name="Order"  component={OrderScreen}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );
