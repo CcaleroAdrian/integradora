@@ -35,13 +35,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
   },
   description: {
-    fontSize: 14,
+    fontSize: 16,
     color: 'white',
+    paddingBottom: 5,
   },
 });
 

@@ -20,11 +20,12 @@ const data = [
 const datos = [
   {id: 1,imagen: require('../../assets/categorias/comida_mexicana.jpg'), title:"Mexicana", description:"comida mexicana"},
   {id: 2,imagen: require('../../assets/categorias/desayunos.png'), title:"Desayunos", description:"Los mejores desayunos"},
+  {id: 4,imagen: require('../../assets/categorias/pizza.jpg'), title:"Pizza", description:"Tradicionales Pizzas"},
   {id: 3,imagen: require('../../assets/categorias/hambuerguesa.jpg'), title:"Hamburguesa", description:"Ricas hamburguesas"},
-  {id: 4,imagen: require('../../assets/categorias/pizza.jpg'), text:"Pizza", description:"Tradicionales Pizzas"},
-  {id: 5,imagen: require('../../assets/categorias/postres.jpg'), text:"Postres", description:"Increibles Postres"},
-  {id: 6,imagen: require('../../assets/categorias/saludable.jpg'), text:"Saludable", description:"La mejor comida saludable"},
-  {id: 7,imagen: require('../../assets/categorias/sushi.jpg'), text:"Sushi", description:"Tradicional Sushi"}
+  
+  {id: 5,imagen: require('../../assets/categorias/postres.jpg'), title:"Postres", description:"Increibles Postres"},
+  {id: 6,imagen: require('../../assets/categorias/saludable.jpg'), title:"Saludable", description:"La mejor comida saludable"},
+  {id: 7,imagen: require('../../assets/categorias/sushi.jpg'), title:"Sushi", description:"Tradicional Sushi"}
 ]
 
 const productos = [
@@ -44,66 +45,61 @@ export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
 
     return (
-    <ScrollView contentContainerStyle={styles.scroll}>
-      <View style={styles.home}>
-        <CardWithImage imageSource={require('../../assets/comida.jpg')} text="Bienvenido"/>
-      </View>
+      <ScrollView contentContainerStyle={styles.scroll}>
+        <View style={styles.home}>
+          <CardWithImage imageSource={require('../../assets/comida.jpg')} text="Bienvenido"/>
+        </View>
 
-      {/** Cuadro de busqueda -> exportar como componente */}
-      <View style={styles.search}>
-        <Icon name="search" color="gray" size={20} />
-        <TextInput
-          style={styles.input}
-          placeholder="  Buscar comida..."
-          value={searchQuery}
-        />
-      </View>
+        {/** Cuadro de busqueda -> exportar como componente */}
+        <View style={styles.search}>
+          <Icon name="search" color="gray" size={20} />
+          <TextInput
+            style={styles.input}
+            placeholder="  Buscar comida..."
+            value={searchQuery}
+            />
+        </View>
 
-      {/** Categorias */}
-      <View style={styles.seccion_categorias}>
-        <Text style={styles.title}>Categorias</Text>
-        <FlatList
-          data={data}
-          horizontal={true} // Configura el desplazamiento horizontal
-          contentContainerStyle={styles.contentContainer}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <CategoryCard imageSource={item.imagen} title={item.text}/>
-          )}
-        />
-      </View>
-
-      {/** Carusel con las promociones - Top 5*/}
-      <View style={styles.seccion}>
-        <Text style={styles.title}>Promociones</Text>
-        
-        <FlatList
-          data={datos}
-          horizontal={true} // Configura el desplazamiento horizontal
-          contentContainerStyle={styles.contentContainer}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-              <CardWithBackgroundImage imageSource={require('../../assets/categorias/comida_mexicana.jpg')} title={item.title} description={item.description}/>
-          )}
-        />
-      </View>
-
-      {/** <FoodCard name={productos[0].title} imageSource={productos[0].imagen} price={productos[0].price} ranking={productos[0].ranking}/>*/}
-      <View style={{margin: 10}}>
-      <Text style={styles.title}>Lo más nuevo</Text>
-        {/* 
-        
-        <FlatList
-            data={productos}
+        {/** Categorias */}
+        <View style={styles.seccion_categorias}>
+          <Text style={styles.title}>Categorias</Text>
+          <FlatList
+            data={data}
+            horizontal={true} // Configura el desplazamiento horizontal
             contentContainerStyle={styles.contentContainer}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-                <FoodCard name={item.title} imageSource={item.imagen} price={item.price} ranking={item.ranking}/>
-            )}
-          />
-        */}
-      </View>
-    </ScrollView>
+              <CategoryCard imageSource={item.imagen} title={item.text}/>
+              )}
+              />
+        </View>
+
+        {/** Carusel con las promociones - Top 5*/}
+        <View style={styles.seccion}>
+          <Text style={styles.title}>Promociones</Text>
+          
+          <FlatList
+            data={datos}
+            horizontal={true} // Configura el desplazamiento horizontal
+            contentContainerStyle={styles.contentContainer}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <CardWithBackgroundImage imageSource={item.imagen} title={item.title} description={item.description}/>
+              )}
+              />
+        </View>
+
+        {/** <FoodCard name={productos[0].title} imageSource={productos[0].imagen} price={productos[0].price} ranking={productos[0].ranking}/>*/}
+        <View style={{margin: 10}}>
+          <Text style={styles.title}>Lo más nuevo</Text>
+          {
+            productos.map((item) => (
+              <FoodCard key={item.id} name={item.title} imageSource={item.imagen} price={item.price} ranking={item.ranking}/>
+            ))
+          }
+        </View>
+      </ScrollView>
+      
   );
 }
 
@@ -138,11 +134,11 @@ const styles = StyleSheet.create({
   seccion: {
     paddingHorizontal: 5,
     margin: 10,
-    height: 250,
+    height: 330,
   },
   seccion_categorias: {
     flex: 1,
-    height: 160
+    height: 190
   },
   contentContainer: {
     height: '100%',

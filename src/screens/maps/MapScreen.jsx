@@ -54,7 +54,7 @@ export default function MapScreen() {
     //console.log(initialRegion)
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={{ flex: 1, justifyContent: 'space-between' }}>
             <MapView
                 ref={mapRef}
                 provider={PROVIDER_GOOGLE}
@@ -67,6 +67,18 @@ export default function MapScreen() {
                 }}
                 customMapStyle={mapStyle}
             >
+                <Marker
+                    draggable
+                    coordinate={{
+                    latitude: 18.506519,
+                    longitude: -98.756474,
+                    }}
+                    onDragEnd={
+                    (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
+                    }
+                    title={'Test Marker'}
+                    description={'This is a description of the marker'}
+                />
                 {MARKERS_DATA.map((marker) => (
                     <CustomMarker
                         key={marker.id}
@@ -93,11 +105,11 @@ export default function MapScreen() {
             </MapView>
             <View style={styles.flatListContainer}>
                 <FlatList
-                data={MARKERS_DATA}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <ListItem item={item} onPressElement={handleNavigateToPoint} />
-                )}
+                    data={MARKERS_DATA}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => (
+                        <ListItem item={item} onPressElement={handleNavigateToPoint} />
+                    )}
                 />
             </View>
         </View>
@@ -116,16 +128,21 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-end',
     },
     mapStyle: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
+        flex: 1,
+        justifyContent: 'center', // Centra el contenido en la parte superior
+        alignItems: 'center', // Centra horizontalmente el contenido
     },
     flatListContainer: {
-        height: '30%', // 30% de la pantalla
+        height: '25%', // 30% de la pantalla
+        width: '100%',
         backgroundColor: 'white',
-        borderTopWidth: 1, // Línea superior para separar el FlatList del contenido principal
         borderColor: 'gray',
+        padding: 10,
+        borderRadius: 10,
+        shadowColor: 'black', // Color de la sombra
+        shadowOffset: { width: 0, height: 2 }, // Desplazamiento de la sombra
+        shadowOpacity: 0.3, // Opacidad de la sombra (0-1)
+        shadowRadius: 4, // Radio de la sombra
+        elevation: 3, // Elevation (Android)
     },
 });

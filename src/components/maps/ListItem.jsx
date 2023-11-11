@@ -12,16 +12,19 @@ export function ListItem({ item, onPressElement }) {
       ]}
       onPress={() => onPressElement(item.id, item.latitude, item.longitude)}
     >
-      <View style={[styles.logo, { backgroundColor: item.color }]}>
+      <View style={styles.column}>
         <Image
           source={item.img}
           style={styles.logoImage}
           resizeMode="contain"
         />
       </View>
-      <View>
+      <View style={styles.column}>
         <Text style={styles.title}>{item.name}</Text>
         <Text style={styles.direction}>{item.direction}</Text>
+      </View>
+      <View style={styles.column}>
+        <Text style={styles.title}>5 km</Text>
       </View>
     </Pressable>
   );
@@ -29,25 +32,32 @@ export function ListItem({ item, onPressElement }) {
 
 const styles = StyleSheet.create({
   item: {
-    flexDirection: 'row',
-    padding: 20,
-    alignItems: 'center',
+    flexDirection: 'row', // Alinea los elementos en una fila
+    justifyContent: 'space-between', // Distribuye el espacio entre las columnas
+    alignItems: 'center', // Alinea verticalmente al centro
+    paddingHorizontal: 5, // Agrega espacio horizontal
+  },
+  column: {
+    flex: 1, // Ocupa igual espacio en la fila
+    alignItems: 'center', // Alinea elementos en el centro horizontalmente
+    paddingBottom: 20,
   },
   logo: {
-    height: 32,
-    width: 32,
+    height: 45,
+    width: 45,
     borderRadius: 50,
     marginRight: 19,
     alignItems: 'center',
     justifyContent: 'center',
   },
   logoImage: {
-    height: '65%',
-    width: '65%',
+    height: 60,
+    width: 60,
+    borderRadius: 50,
   },
   title: {
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: '800',
     color: '#2F3136',
   },
   direction: {

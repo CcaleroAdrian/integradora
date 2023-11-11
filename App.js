@@ -4,8 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Navigation from './src/navigation/Navigation'
 
-import ProfileScreen from "./src/screens/profile/ProfileScreen";
-import BillScreen from './src/screens/profile/BillScreen'
+import ProfileNavigation from "./src/navigation/ProfileNavigation";
+import BillNavigation from './src/navigation/BillNavigation';
+import Login from './src/screens/auth/login/Login';
+import RegisterUser from './src/screens/auth/register/Register';
 
 const Drawer = createDrawerNavigator();
 
@@ -14,8 +16,10 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Changarrito" component={Navigation} />
-        <Drawer.Screen name="Perfil" component={ProfileScreen} />
-        <Drawer.Screen name="Pagos" component={BillScreen} />
+        <Drawer.Screen name="Profile" component={ProfileNavigation} />
+        <Drawer.Screen name="Pagos" component={BillNavigation} />
+        <Drawer.Screen name="Login" component={Login} />
+        <Drawer.Screen name="Registro" component={RegisterUser} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
