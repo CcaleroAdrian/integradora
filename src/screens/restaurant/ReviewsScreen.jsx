@@ -55,7 +55,7 @@ export default function ReviewsScreen () {
   return (
     <ScrollView>
       <View style={styles.platilloContainer}>
-        <Image source={{ uri: platillo.imagen }} style={styles.platilloImage} />
+        <Image source={platillo.imagen} style={styles.platilloImage} />
         <Text style={styles.platilloName}>{platillo.nombre}</Text>
         <Text style={styles.platilloInfo}>Precio: ${platillo.precio}</Text>
         <Text style={styles.platilloInfo}>Descripción: {platillo.descripcion}</Text>

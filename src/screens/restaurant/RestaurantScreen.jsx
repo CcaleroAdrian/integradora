@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
 import { Text, View, ImageBackground, ScrollView, TextInput, Button } from 'react-native';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['some warning']); // Puedes ignorar ciertos tipos de logs si es necesario.
+
 
 const restaurante = {
     imagen: require('../../../assets/restaurant/lugar1.jpg'),
@@ -16,7 +20,7 @@ const restaurante = {
         ranking: '4.8'
     },
     {
-        id: 1,
+        id: 2,
         imagen: require('../../../assets/categorias/desayunos.png'),
         nombre: 'Desayuno americano',
         precio: '23.30',
@@ -24,7 +28,7 @@ const restaurante = {
         ranking: '4.8'
     },
     {
-        id: 1,
+        id: 3,
         imagen: require('../../../assets/categorias/desayunos.png'),
         nombre: 'Desayuno americano',
         precio: '23.30',
@@ -32,7 +36,7 @@ const restaurante = {
         ranking: '4.8'
     },
     {
-        id: 1,
+        id: 4,
         imagen: require('../../../assets/categorias/desayunos.png'),
         nombre: 'Desayuno americano',
         precio: '23.30',
@@ -40,7 +44,7 @@ const restaurante = {
         ranking: '4.8'
     },
     {
-        id: 1,
+        id: 5,
         imagen: require('../../../assets/categorias/desayunos.png'),
         nombre: 'Desayuno americano',
         precio: '23.30',
