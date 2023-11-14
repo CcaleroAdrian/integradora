@@ -1,31 +1,12 @@
 import 'react-native-gesture-handler';
-import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import Navigation from './src/navigation/Navigation'
-
-import ProfileScreen from "./src/screens/favorite/FavoriteScreen";
-import BillScreen from './src/screens/profile/BillScreen'
-
-const Drawer = createDrawerNavigator();
+import { Provider } from 'react-redux';
+import store from './src/store';
+import AppNavigator from './src/navigation/AppNavigation';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Changarrito" component={Navigation} />
-        <Drawer.Screen name="Perfil" component={ProfileScreen} />
-        <Drawer.Screen name="Pagos" component={BillScreen} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+        <AppNavigator/>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

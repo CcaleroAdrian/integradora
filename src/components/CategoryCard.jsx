@@ -15,10 +15,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     margin: 10,
+    width: 150,
   },
   image: {
     width: '100%',
-    height: 150, // Ajusta la altura de la imagen según tus necesidades
+    height: 100, // Ajusta la altura de la imagen según tus necesidades
   },
   title: {
     fontSize: 18,

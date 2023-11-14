@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     margin: 10,
-    height: 250, // Ajusta la altura de la tarjeta según tus necesidades
+    height: '100%', // Ajusta la altura de la tarjeta según tus necesidades
+    width: 250,
+
   },
   backgroundImage: {
     width: '100%',
@@ -33,13 +35,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
   },
   description: {
-    fontSize: 14,
+    fontSize: 16,
     color: 'white',
+    paddingBottom: 5,
   },
 });
 

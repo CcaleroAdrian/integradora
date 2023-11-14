@@ -15,8 +15,7 @@ const CardWithImage = ({ imageSource, text }) => {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 10,
-    overflow: 'hidden',
-    margin: 10,
+    margin: 10
   },
   image: {
     width: '100%',

@@ -14,6 +14,9 @@ export default function Navigation(){
     return(
         <Tab.Navigator
         initialRouteName="Inicio"
+        screenOptions= {{
+            headerShown: false
+        }}
         >
             <Tab.Screen
                 name="Inicio"

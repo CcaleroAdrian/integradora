@@ -1,19 +1,41 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
-export default function Search() {
+const windowHeight = Dimensions.get('window').height;
+
+export default function SearchScreen() {
   return (
     <View style={styles.container}>
-      <Text>¡Esta es la pantalla de Busquedas!</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+  },
+  contentContainerStyle: {
+    padding: 16,
+    backgroundColor: '#F3F4F9',
+  },
+  header: {
     alignItems: 'center',
+    backgroundColor: 'white',
+    paddingVertical: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
+  panelHandle: {
+    width: 40,
+    height: 2,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    borderRadius: 4
+  },
+  item: {
+    padding: 20,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    alignItems: 'center',
+    marginVertical: 10,
   },
 });
-

@@ -1,16 +1,21 @@
 import React from "react";
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import ProfileScreen from "../screens/favorite/FavoriteScreen";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ProfileScreen from "../screens/profile/ProfileScreen";
 
-
-const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function AccountNavigation() {
   return (
-    <Drawer.Navigator initialRouteName="Profile">
-      <Drawer.Screen 
-        name="Profile" 
-        component={ProfileScreen} />
-    </Drawer.Navigator>
+    <Stack.Navigator
+      initialRouteName="Perfil"
+      screenOptions= {{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen
+        name="Perfil"
+        component={ProfileScreen}
+      />
+    </Stack.Navigator>
   );
 }
