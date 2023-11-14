@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { View, Text, TextInput, Button, Image, StyleSheet, ImageBackground } from 'react-native';
 
-export default function Register() {
+export default function RegisterScreen() {
     const [nombre, setNombre] = useState('');
     const [apellidos, setApellidos] = useState('');
     const [telefono, setTelefono] = useState('');

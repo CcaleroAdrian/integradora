@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Text, View, TextInput, StyleSheet, FlatList, SafeAreaView, ScrollView } from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Icon from "react-native-vector-icons/FontAwesome5";
 import CardWithImage from '../components/CardWithImage'
 import CategoryCard from '../components/CategoryCard'
 import CardWithBackgroundImage from '../components/CardWithBackgroundImage';
 import FoodCard from '../components/FoodCard';
+import {getCategories} from '../services/categories'
 
 const data = [
   {id: 1,imagen: require('../../assets/categorias/comida_mexicana.jpg'), text:"Mexicana"},
@@ -43,7 +44,18 @@ const productos = [
 
 export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getCategories();
+        console.log(result);
+      } catch (error) {
+        console.error('Error al cargar documentos:', error);
+      }
+    };
 
+    fetchData();
+  }, []);
     return (
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.home}>

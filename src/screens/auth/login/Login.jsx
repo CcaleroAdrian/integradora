@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image, StyleSheet, ImageBackground, CheckBox } from 'react-native';
+import { View, Text, TextInput, Button, Image, StyleSheet, ImageBackground, Switch } from 'react-native';
 
 export default function Login({children}) {
     const [email, setEmail] = useState('');
@@ -31,8 +31,7 @@ export default function Login({children}) {
                     />
                     <View style={styles.checkboxContainer}>
                         <Text>Recordarme</Text>
-                        <CheckBox
-                            type="checkbox"
+                        <Switch
                             style={styles.checkbox}
                             value={rememberMe}
                             onValueChange={() => setRememberMe(!rememberMe)}
