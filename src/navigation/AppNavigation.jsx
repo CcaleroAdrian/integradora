@@ -6,9 +6,9 @@ import RegisterScreen from '../screens/auth/register/Register';
 
 const Stack = createNativeStackNavigator();
 
-export default function AppNavigator(){
-    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-    console.log(isAuthenticated);
+export default function AppNavigator() {
+//   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isAuthenticated = true;
 
     return (
         <NavigationContainer>

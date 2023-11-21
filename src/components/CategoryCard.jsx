@@ -1,32 +1,54 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
+import { colors } from '../utils/palette';
 
 const CategoryCard = ({ title, imageSource }) => {
   return (
     <View style={styles.card}>
-      <Image source={imageSource} style={styles.image} />
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.containerImage}>
+        <Image source={imageSource} style={styles.image} />
+      </View>
+      <View style={styles.containerText}>
+        <Text style={styles.title}>{title}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 10,
+    width: 90,
+    height: 130,
+    flexDirection: "column",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  containerImage: {
     overflow: 'hidden',
-    margin: 10,
-    width: 150,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.background.white,
+    borderWidth: 1,
+    borderColor: colors.border.light,
+    width: 70,
+    height: 70,
+    padding: 8,
+    borderRadius: 35,
   },
   image: {
-    width: '100%',
-    height: 100, // Ajusta la altura de la imagen según tus necesidades
+    width: 45,
+    height: 45,
+  },
+  containerText: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
   },
   title: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
-    backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fondo semi-transparente para el título
-    color: 'white',
-    padding: 10,
+    color: colors.text.auxiliar,
   },
 });
 
