@@ -19,7 +19,7 @@ export default function AppNavigator() {
             >
             { isAuthenticated ? ( 
                 <>
-                    <Stack.Screen name='Root' component={Navigation} />
+                    <Stack.Screen name='Navigation' component={Navigation} />
                 </>
             ): (
                 <>

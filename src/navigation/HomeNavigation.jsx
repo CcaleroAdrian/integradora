@@ -12,7 +12,7 @@ export default function HomeNavigation() {
         headerShown: false
     }}>
       <Stack.Screen
-        name="Home"
+        name="Inicio"
         component={HomeScreen}
         options={{ 
             title: "Bienvenido",
