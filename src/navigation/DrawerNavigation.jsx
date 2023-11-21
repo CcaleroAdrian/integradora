@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Navigation from './Navigation'
+
 import ProfileNavigation from "./ProfileNavigation";
 import BillNavigation from './BillNavigation';
 

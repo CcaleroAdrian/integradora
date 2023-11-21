@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, Image, FlatList, Button, TouchableOpacity } fro
 import Icon from "react-native-vector-icons/AntDesign";
 
 const items = [
-  { id: 1, img: require('/assets/comida.jpg'), title: "Domino´s (Madre Selva)", icon: 'staro', descr: "4.1 $$$ - Pizza/Americana", time: "18-33Min - MX$28", ad: "Ahorros de hasta MX$99" },
-  { id: 2, img: require('/assets/categorias/desayunos.png'), title: "Tio Toño", icon: 'star', descr: "5.0 $$$ - Desayuno/Mexicano", time: "20-30Min - MX$40", ad: "Ahorros de hasta MX$70" },
-  { id: 3, img: require('/assets/categorias/hambuerguesa.jpg'), title: "McDonalds", icon: 'staro', descr: "3.5 $$$ - Hambuerguesa/Americana", time: "15-25Min - MX$33", ad: "Ahorros de hasta MX$80" },
+  { id: 1, img: require('../../../assets/comida.jpg'), title: "Domino´s (Madre Selva)", icon: 'staro', descr: "4.1 $$$ - Pizza/Americana", time: "18-33Min - MX$28", ad: "Ahorros de hasta MX$99" },
+  { id: 2, img: require('../../../assets/categorias/desayunos.png'), title: "Tio Toño", icon: 'star', descr: "5.0 $$$ - Desayuno/Mexicano", time: "20-30Min - MX$40", ad: "Ahorros de hasta MX$70" },
+  { id: 3, img: require('../../../assets/categorias/hambuerguesa.jpg'), title: "McDonalds", icon: 'staro', descr: "3.5 $$$ - Hambuerguesa/Americana", time: "15-25Min - MX$33", ad: "Ahorros de hasta MX$80" },
 ]
 
-export default function Offers() {
+export default function FavoriteScreen() {
 
   const [page, setpage] = useState(false)
   const onHandlePage = () => {

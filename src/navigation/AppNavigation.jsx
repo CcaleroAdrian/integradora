@@ -1,8 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
-import DrawerNavigation from './DrawerNavigation';
-import Login from '../screens/auth/login/login_v2';
+import Navigation from './Navigation'
 import RegisterScreen from '../screens/auth/register/Register';
 
 const Stack = createNativeStackNavigator();
@@ -13,14 +12,14 @@ export default function AppNavigator(){
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Changarrito"
+            <Stack.Navigator initialRouteName="Root"
              screenOptions= {{
                 headerShown: false
             }}
             >
-            { isAuthenticated ? (
+            { isAuthenticated ? ( 
                 <>
-                    <Stack.Screen name='Root' component={DrawerNavigation} />
+                    <Stack.Screen name='Root' component={Navigation} />
                 </>
             ): (
                 <>

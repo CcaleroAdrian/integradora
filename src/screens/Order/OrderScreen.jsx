@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, Image, FlatList, Button, TouchableOpacity } fro
 import { FontAwesome } from '@expo/vector-icons'; // Asegúrate de importar FontAwesome desde tu proyecto o utilizar otra biblioteca de iconos.
 
 const items = [
-    { id: 1, img: require('/assets/categorias/comida_mexicana.jpg'), title: "Chiles en nogada", peso: "-240 g", price:20},
-    { id: 2, img: require('/assets/categorias/pizza.jpg'), title: "Pizza suprema", peso: "-160 g", price:8},
-    { id: 3, img: require('/assets/categorias/postres.jpg'), title: "Pastel de frutos rojos", peso: "-310 g", price:18},
+    { id: 1, img: require('../../../assets/categorias/comida_mexicana.jpg'), title: "Chiles en nogada", peso: "-240 g", price:20},
+    { id: 2, img: require('../../../assets/categorias/pizza.jpg'), title: "Pizza suprema", peso: "-160 g", price:8},
+    { id: 3, img: require('../../../assets/categorias/postres.jpg'), title: "Pastel de frutos rojos", peso: "-310 g", price:18},
 ]
 export default function OrderScreen() {
     const [count, setCount] = useState(1);

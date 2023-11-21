@@ -48,7 +48,7 @@ export default function HomeScreen() {
     const fetchData = async () => {
       try {
         const result = await getCategories();
-        console.log(result);
+        //console.warn(result);
       } catch (error) {
         console.error('Error al cargar documentos:', error);
       }
@@ -56,6 +56,7 @@ export default function HomeScreen() {
 
     fetchData();
   }, []);
+  
     return (
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.home}>
