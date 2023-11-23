@@ -79,7 +79,7 @@ const restaurante = {
       name: "Bebidas frias",
       platillos: [
         {
-          id: 1,
+          id: 6,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -88,7 +88,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 2,
+          id: 7,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -97,7 +97,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 3,
+          id: 8,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -106,7 +106,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 4,
+          id: 9,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -115,7 +115,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 5,
+          id: 10,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -130,7 +130,7 @@ const restaurante = {
       name: "Pastas",
       platillos: [
         {
-          id: 1,
+          id: 11,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -139,7 +139,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 2,
+          id: 12,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -148,7 +148,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 3,
+          id: 13,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -157,7 +157,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 4,
+          id: 14,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -166,7 +166,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 5,
+          id: 15,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -181,7 +181,7 @@ const restaurante = {
       name: "Sopas",
       platillos: [
         {
-          id: 1,
+          id: 16,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -190,7 +190,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 2,
+          id: 17,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -199,7 +199,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 3,
+          id: 18,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -208,7 +208,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 4,
+          id: 19,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -217,7 +217,7 @@ const restaurante = {
           ranking: "4.8",
         },
         {
-          id: 5,
+          id: 20,
           imagen: require("../../../assets/categorias/desayunos.png"),
           nombre: "Desayuno americano",
           precio: "23.30",
@@ -233,6 +233,11 @@ const restaurante = {
 export default function RestaurantScreen() {
   const [cantidad, setCantidad] = useState(1);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedData, setSelectedData] = useState(null);
+  const showModal = (data) => {
+    setSelectedData(data);
+    setModalVisible(true);
+  }
 
   return (
     <ScrollView>
@@ -266,12 +271,6 @@ export default function RestaurantScreen() {
             <Text style={styles.ranking}>{restaurante.ranking}</Text>
             <Text style={styles.reviews}>({restaurante.reviews})</Text>
           </View>
-          <Pressable
-            style={[styles.button, styles.buttonOpen]}
-            onPress={() => setModalVisible(true)}
-          >
-            <Text style={styles.textStyle}>Show Modal</Text>
-          </Pressable>
         </View>
       </View>
       <View style={styles.containerMenu}>
@@ -280,6 +279,7 @@ export default function RestaurantScreen() {
             key={category.id}
             title={category.name}
             data={category.platillos}
+            showModal={showModal}
           />
         ))}
       </View>
@@ -289,7 +289,7 @@ export default function RestaurantScreen() {
         visible={modalVisible}>
         <View style={styles.centeredModal}>
           <View style={styles.containerModal}>
-            <RestaurantModalFood data={restaurante.categories[0].platillos[0]} />
+            <RestaurantModalFood data={selectedData} />
             <Pressable
               style={[styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
@@ -393,7 +393,8 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonClose: {
-    backgroundColor: colors.background.red,
+    borderWidth: 1,
+    borderColor: colors.border.primary,
     width: 30,
     height: 30,
     borderRadius: 10,
@@ -404,7 +405,7 @@ const styles = StyleSheet.create({
     right: 10,
   },
   buttonCloseText: {
-    color: colors.text.white,
+    color: colors.text.primary,
     fontSize: 15,
     fontWeight: "900"
   }

@@ -3,12 +3,12 @@ import { View, Image, Text, StyleSheet } from "react-native";
 import RestaurantDish from "../components/RestaurantDish";
 import { colors } from "../utils/palette";
 
-const RestaurantCategory = ({ title, data }) => {
+const RestaurantCategory = ({ title, data, showModal }) => {
   return (
     <View style={styles.containerGlobal}>
       <Text style={styles.title}>{title}</Text>
       {data.map((item) => (
-        <RestaurantDish key={item.id} data={item}/>
+        <RestaurantDish key={item.id} data={item} showModal={showModal}/>
       ))}
     </View>
   );
