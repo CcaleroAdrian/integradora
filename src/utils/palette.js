@@ -27,5 +27,6 @@ export const colors = {
     border: {
         light: '#DDD',
         secondary   : '#F2AB27',
+        primary     : '#BF365A',
     }
 } 

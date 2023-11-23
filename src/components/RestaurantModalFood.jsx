@@ -10,7 +10,7 @@ const RestaurantModalFood = ({ data }) => {
       <View style={styles.containerDish}>
         <Image source={data.imagen} style={styles.dishImage} />
         <View style={styles.containerData}>
-          <Text style={styles.title}>{data.nombre}</Text>
+          <Text style={styles.title}>{data.id}{data.nombre}</Text>
           <Text style={styles.description}>{data.descripcion}</Text>
           <Text style={styles.price}>MX ${data.precio}</Text>
         </View>

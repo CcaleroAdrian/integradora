@@ -1,17 +1,19 @@
 import React from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, Pressable } from "react-native";
 import { colors } from "../utils/palette";
 
-const RestaurantDish = ({ data }) => {
+const RestaurantDish = ({ data, showModal }) => {
   return (
-    <View style={styles.containerDish}>
-      <Image source={data.imagen} style={styles.dishImage} />
-      <View style={styles.containerData}>
-        <Text style={styles.title}>{data.nombre}</Text>
-        <Text style={styles.description}>{data.descripcion}</Text>
-        <Text style={styles.price}>MX ${data.precio}</Text>
+    <Pressable onPress={() => showModal(data)}>
+      <View style={styles.containerDish}>
+        <Image source={data.imagen} style={styles.dishImage} />
+        <View style={styles.containerData}>
+          <Text style={styles.title}>{data.id}{data.nombre}</Text>
+          <Text style={styles.description}>{data.descripcion}</Text>
+          <Text style={styles.price}>MX ${data.precio}</Text>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
