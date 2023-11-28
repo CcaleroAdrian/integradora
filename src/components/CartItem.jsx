@@ -39,7 +39,7 @@ const CartItem = ({ data }) => {
       </View>
       <View style={styles.containerTrash}>
         <Image
-          source={require("../../assets/icons/trash_3.png")}
+          source={require("../../assets/icons/trash.png")}
           style={styles.icon}
         />
       </View>

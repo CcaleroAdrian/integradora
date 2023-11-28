@@ -10,63 +10,14 @@ import {
 } from "react-native";
 import { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { useDispatch } from 'react-redux';
+import {setCategory} from '../actions/platilloActions';
 import CardWithImage from "../components/CardWithImage";
 import CategoryCard from "../components/CategoryCard";
 import PromotionalCard from "../components/PromotionalCard";
 import FoodCard from "../components/FoodCard";
 import { getCategories } from "../services/categories";
 import { colors } from "../utils/palette";
-
-const data = [
-  { id: 1, imagen: require("../../assets/icons/pizza.png"), text: "Pizza" },
-  {
-    id: 2,
-    imagen: require("../../assets/icons/fastFood.png"),
-    text: "Fast Food",
-  },
-  { id: 3, imagen: require("../../assets/icons/sushi.png"), text: "Sushi" },
-  {
-    id: 4,
-    imagen: require("../../assets/icons/italiana.png"),
-    text: "Italiana",
-  },
-  {
-    id: 5,
-    imagen: require("../../assets/icons/mexicana.png"),
-    text: "Mexicana",
-  },
-  {
-    id: 6,
-    imagen: require("../../assets/icons/saludable.png"),
-    text: "Saludable",
-  },
-  {
-    id: 7,
-    imagen: require("../../assets/icons/desayunos.png"),
-    text: "Desayunos",
-  },
-  {
-    id: 8,
-    imagen: require("../../assets/icons/postres.png"),
-    text: "Postres y Helados",
-  },
-  {
-    id: 9,
-    imagen: require("../../assets/icons/cafeteria.png"),
-    text: "Cafeterias",
-  },
-  {
-    id: 10,
-    imagen: require("../../assets/icons/mariscos.png"),
-    text: "Mariscos",
-  },
-  {
-    id: 11,
-    imagen: require("../../assets/icons/parrillada.png"),
-    text: "A la Parrilla",
-  },
-  { id: 12, imagen: require("../../assets/icons/casera.png"), text: "Casera" },
-];
 
 const datos = [
   {
@@ -217,12 +168,17 @@ const productos = [
 ];
 
 export default function HomeScreen() {
+  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
+  const [category, setCategories] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await getCategories();
-        //console.warn(result);
+        dispatch(setCategory(result))
+        setCategories(result);
+        //console.log(result);
       } catch (error) {
         console.error("Error al cargar documentos:", error);
       }
@@ -252,12 +208,12 @@ export default function HomeScreen() {
       <View style={styles.seccion_categorias}>
         <Text style={styles.title}>Categorias</Text>
         <FlatList
-          data={data}
+          data={category}
           horizontal={true} // Configura el desplazamiento horizontal
           contentContainerStyle={styles.contentContainer}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <CategoryCard imageSource={item.imagen} title={item.text} />
+            <CategoryCard imageSource={item.data.imagen} title={item.data.text} />
           )}
         />
       </View>
