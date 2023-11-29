@@ -6,7 +6,7 @@ const CategoryCard = ({ title, imageSource }) => {
   return (
     <View style={styles.card}>
       <View style={styles.containerImage}>
-        <Image source={imageSource} style={styles.image} />
+        <Image source={{uri:imageSource}} style={styles.image} />
       </View>
       <View style={styles.containerText}>
         <Text style={styles.title}>{title}</Text>
