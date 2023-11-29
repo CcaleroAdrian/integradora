@@ -3,45 +3,46 @@ import { View, Image, Text, StyleSheet, Pressable } from "react-native";
 import { colors } from "../utils/palette";
 import { useState } from "react";
 
-const CartItem = ({ data }) => {
+const CartItem = ({ data, increase, decrement, deleteSelf }) => {
   const len = 30;
   const formattedDescription =
     data.descripcion.length > len
       ? data.descripcion.substring(0, len) + "..."
       : data.descripcion;
-  const [counter, setCounter] = useState(data.amount);
-
+  const formatedPrice = data.precio.toFixed(2);
   return (
     <View style={styles.containerItem}>
       <View style={styles.containerImage}>
-      <Image source={data.imagen} style={styles.itemImage} />
+        <Image source={data.imagen} style={styles.itemImage} />
       </View>
       <View style={styles.containerData}>
         <Text style={styles.title}>{data.nombre}</Text>
         <Text style={styles.description}>{formattedDescription}</Text>
-        <Text style={styles.price}>MX ${data.precio}</Text>
+        <Text style={styles.price}>MXN ${formatedPrice}</Text>
         <View style={styles.containerControls}>
           <Pressable
             style={styles.controlButton}
-            onPress={() => setCounter(counter-1)}
-            disabled={counter === 1}
+            onPress={() => decrement(data.id)}
+            disabled={data.amount === 1}
           >
             <Text style={styles.controlButtonText}>-</Text>
           </Pressable>
-          <Text style={styles.counter}>{counter}</Text>
+          <Text style={styles.counter}>{data.amount}</Text>
           <Pressable
             style={styles.controlButton}
-            onPress={() => setCounter(counter+1)}
+            onPress={() => increase(data.id)}
           >
             <Text style={styles.controlButtonText}>+</Text>
           </Pressable>
         </View>
       </View>
       <View style={styles.containerTrash}>
-        <Image
-          source={require("../../assets/icons/trash_3.png")}
-          style={styles.icon}
-        />
+        <Pressable onPress={() => deleteSelf(data.id)}>
+          <Image
+            source={require("../../assets/icons/trash_3.png")}
+            style={styles.icon}
+          />
+        </Pressable>
       </View>
     </View>
   );

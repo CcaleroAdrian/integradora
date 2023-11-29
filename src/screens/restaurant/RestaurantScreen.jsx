@@ -237,7 +237,7 @@ export default function RestaurantScreen() {
   const showModal = (data) => {
     setSelectedData(data);
     setModalVisible(true);
-  }
+  };
 
   return (
     <ScrollView>
@@ -283,16 +283,14 @@ export default function RestaurantScreen() {
           />
         ))}
       </View>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}>
+      <Modal animationType="fade" transparent={true} visible={modalVisible}>
         <View style={styles.centeredModal}>
           <View style={styles.containerModal}>
             <RestaurantModalFood data={selectedData} />
             <Pressable
               style={[styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
+              onPress={() => setModalVisible(!modalVisible)}
+            >
               <Text style={styles.buttonCloseText}>X</Text>
             </Pressable>
           </View>
@@ -375,9 +373,9 @@ const styles = StyleSheet.create({
   },
   centeredModal: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.8)',
+    justifyContent: "flex-end",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.8)",
   },
   containerModal: {
     width: "100%",
@@ -407,6 +405,6 @@ const styles = StyleSheet.create({
   buttonCloseText: {
     color: colors.text.primary,
     fontSize: 15,
-    fontWeight: "900"
-  }
+    fontWeight: "900",
+  },
 });
