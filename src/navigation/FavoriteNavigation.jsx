@@ -8,13 +8,13 @@ const Stack = createNativeStackNavigator();
 export default function FavoritesNavigation() {
   return (
     <Stack.Navigator
-    screenOptions= {{
-      headerShown: false
-    }}
     >
       <Stack.Screen
         name="Favoritos"
         component={FavoriteScreen}
+        options={{ 
+          title: "Tus favoritos",
+        }}
       />
     </Stack.Navigator>
   );

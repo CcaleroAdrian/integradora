@@ -1,25 +1,24 @@
 import React from 'react';
-import { Text,TextInput, View, StyleSheet, ScrollView} from 'react-native';
+import { Text,View, StyleSheet, ScrollView} from 'react-native';
 import { useState, useEffect } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PLatilloItem from '../../components/restaurant/platilloCard'
 import { colors } from "../../utils/palette";
-import Icon from "react-native-vector-icons/FontAwesome5";
 import { FAB, Searchbar, Dialog, Button} from 'react-native-paper';
-import { useDispatch } from 'react-redux';
 import {setPlatillos} from '../../actions/platilloActions';
 import { deletePlatilloRestaurant } from "../../services/platillos";
 
 // Trabajar datos con Firebase
 import { getPlatillosRestaurant } from "../../services/platillos";
 
-export default function DetailsMenuScreen() {
+export default function DetailsMenuScreen({ navigation }) {
     const categories = useSelector((state) => state.platillo.categories);
     const idSocio = useSelector((state) => state.user.socio);
     const platillos = useSelector((state) => state.platillo.platillos);
 
     const [searchQuery, setSearchQuery] = useState("");
     const [visible, setVisible] = useState(false);
+    const [selectedItemId, setSelectedItemId] = useState(null);
     const dispatch = useDispatch();
 
     const showDialog = () => setVisible(true);
@@ -29,14 +28,15 @@ export default function DetailsMenuScreen() {
     //handle para eliminar registro
     const handleDelete = (id) => {
         console.info("id: "+id)
+        setSelectedItemId(id.trim())
         showDialog()
     }
 
     // Evento para eliminar el pruducto de firebase y del Store
-    const eliminarPlatillo = async (id) => {
+    const eliminarPlatillo = async () => {
         try {
             // Borrar el documento de Firebase
-            await deletePlatilloRestaurant(id);
+            await deletePlatilloRestaurant(selectedItemId);
       
             // Después de recibir la confirmación de Firebase, eliminar del store
             dispatch(deleteDocument(documentId));
@@ -85,7 +85,7 @@ export default function DetailsMenuScreen() {
                 style={styles.fab}
                 mode='elevated'
                 theme={{ colors: { primary: 'green' } }}
-                onPress={() => console.log('Pressed')}
+                onPress={() => navigation.navigate('editMenu', {id:null})}
             />
             {/* Mensaje de confirmacion*/}
             <Dialog visible={visible} onDismiss={hideDialog}>

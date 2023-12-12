@@ -42,7 +42,7 @@ export default function PLatilloItem ({ data, category, onDelete }) {
             <View style={{flex: 0.5}}>
               <View style={{flexDirection: "row", marginTop:6}}>
                 <Icon source="silverware-variant" size={25}/>
-                <Text style={styles.price}>{result.text}</Text>
+                <Text style={styles.price}>{result.data.text}</Text>
               </View>
             </View>
           </View>

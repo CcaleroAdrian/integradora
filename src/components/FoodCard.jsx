@@ -2,6 +2,7 @@ import React from "react";
 import { View, Image, Text, StyleSheet, ImageBackground } from "react-native";
 import { spacing } from "../utils/spacing";
 import { colors } from "../utils/palette";
+import ButtonHeartOutline from '../components/favorite/ButtonHeartOutline';
 
 const FoodCard = ({
   imageSource,
@@ -11,21 +12,28 @@ const FoodCard = ({
   price,
   time,
   category,
+  id,
 }) => {
   const length = 32;
   const formatedTitle =
     title.length > length ? title.substring(0, length) + "..." : title;
-
+  //console.info(category);
   return (
     <View style={styles.card}>
-      <ImageBackground source={imageSource} style={styles.containerImage} >
-      <View style={styles.like}>
-          <Image
-            source={require("../../assets/icons/star.png")}
-            style={styles.iconStart}
-          />
-        </View>
-      </ImageBackground>
+      { imageSource.length==0 ?
+        <ImageBackground source={require('../../assets/icons/image.png')} style={styles.containerImage} >
+          <View style={styles.like}>
+            <ButtonHeartOutline platillo={id} />
+          </View>
+        </ImageBackground>
+        :
+        <ImageBackground source={{uri:imageSource}} style={styles.containerImage} >
+          <View style={styles.like}>
+            <ButtonHeartOutline platillo={id} />
+          </View>
+        </ImageBackground>
+      }
+      
       <View style={styles.data}>
         <View style={styles.containerRanking}>
           <Image
@@ -104,6 +112,7 @@ const styles = StyleSheet.create({
   },
   data: {
     padding: 10,
+    marginBottom: 10,
   },
   title: {
     fontSize: 20,

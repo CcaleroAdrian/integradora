@@ -1,18 +1,18 @@
 import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import CartScreen from "../screens/cart/CartScreen";
+import MapScreen from "../screens/maps/MapScreen";
 
 
 const Stack = createNativeStackNavigator();
 
-export default function CartNavigation() {
+export default function MapNavigation() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
-        component={CartScreen}
+        name="Map"
+        component={MapScreen}
         options={{ 
-            title: "Carrito de compras",
+            title: "Cerca de tu ubicación",
         }}
       />
     </Stack.Navigator>

@@ -7,6 +7,7 @@ import AddressScreen from '../screens/profile/AddressScreen';
 import BillScreen from '../screens/profile/BillScreen';
 import OrderScreen from '../screens/Order/OrderScreen';
 import ChangePasswordScreen from '../screens/profile/ChangePasswordScreen'
+import EditMenuModal from '../screens/Food/EditMenuModal';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,26 +19,32 @@ export default function AccountNavigation() {
         headerShown: false
       }}
     >
+      <Stack.Group>
+
       <Stack.Screen
         name="Profile"
         component={OptionsProfile}
-      />
+        />
       <Stack.Screen
         name="UpdateProfile"
         component={ProfileScreen}
-      />
+        />
       <Stack.Screen
         name="UpdateMenu"
         component={MenuScreen}
-      />
+        />
       <Stack.Screen
         name="Address"
         component={AddressScreen}
-      />
+        />
       <Stack.Screen
         name="PaymentMethods"
         component={BillScreen}
-      />
+        />
+      </Stack.Group>
+      <Stack.Group screenOptions={{presentation: 'containedModal'}}>
+        <Stack.Screen name="editMenu" component={EditMenuModal}/>
+      </Stack.Group>
       <Stack.Screen
         name="History"
         component={OrderScreen}

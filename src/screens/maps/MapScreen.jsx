@@ -38,7 +38,7 @@ export default function MapScreen() {
     
           let location = await Location.getCurrentPositionAsync({});
           setCurrentLocation(location.coords);
-    
+          console.log(location)
           setInitialRegion({
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
@@ -49,7 +49,13 @@ export default function MapScreen() {
     
         getLocation();
     }, []);
-
+    
+    const positionActual = async()=>{
+        let location = await Location.getCurrentPositionAsync({});
+        setCurrentLocation(location.coords);
+        console.log(location)
+    }
+    positionActual();
     //console.log(currentLocation)
     //console.log(initialRegion)
 
@@ -60,23 +66,23 @@ export default function MapScreen() {
                 provider={PROVIDER_GOOGLE}
                 style={styles.mapStyle}
                 initialRegion={{
-                    latitude: 18.506519,
-                    longitude: -98.756474,
-                    latitudeDelta: 0.003,
-                    longitudeDelta: 0.003,
+                    latitude: initialRegion.latitude,
+                    longitude: initialRegion.longitude,
+                    latitudeDelta: initialRegion.latitudeDelta,
+                    longitudeDelta: initialRegion.longitudeDelta,
                 }}
                 customMapStyle={mapStyle}
             >
                 <Marker
                     draggable
                     coordinate={{
-                    latitude: 18.506519,
-                    longitude: -98.756474,
+                        latitude: currentLocation.latitude,
+                        longitude: currentLocation.longitude,
                     }}
                     onDragEnd={
-                    (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
+                        (e) => alert(JSON.stringify(e.nativeEvent.coordinate))
                     }
-                    title={'Test Marker'}
+                    title={'Ubicacion Actual'}
                     description={'This is a description of the marker'}
                 />
                 {MARKERS_DATA.map((marker) => (

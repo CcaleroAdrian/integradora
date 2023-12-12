@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, View } from 'react-native';
 import HomeNavigation from '../navigation/HomeNavigation'
 import FavoritesNavigation from '../navigation/FavoriteNavigation'
-import SearchNavigation from '../navigation/SearchNavigations'
+import MapNavigation from '../navigation/MapNavigations'
 import CartNavigation from '../navigation/CartNavigation'
 import ProfileNavigation from '../navigation/ProfileNavigation'
 
@@ -16,9 +16,11 @@ export default function Navigation(){
         initialRouteName="Home"
         screenOptions= {{
             headerShown: false,
-            tabBarActiveTintColor:'#BF365A',
-            tabBarInactiveBackgroundColor: '#CCCCCC',
-            tabBarLabelStyle:{fontSize:14}
+            tabBarActiveTintColor:'#25282f',
+            tabBarInactiveTintColor: '#25282f',
+            tabBarLabelStyle:{fontSize:14},
+            tabBarStyle: { position: 'absolute', backgroundColor:'white' },
+
         }}
         >
             <Tab.Screen
@@ -39,7 +41,7 @@ export default function Navigation(){
             />
             <Tab.Screen
                 name="Buscar"
-                component={SearchNavigation}
+                component={MapNavigation}
                 options={{
                     tabBarLabel: "",
                     tabBarIcon: () => MapaIcon(),
@@ -57,7 +59,7 @@ export default function Navigation(){
                 name="Settings"
                 component={ProfileNavigation}
                 options={{
-                    tabBarLabel: "Más",
+                    tabBarLabel: "Perfil",
                     tabBarIcon: () => SettingIcon(),
                 }}
             />
@@ -69,7 +71,7 @@ function HomeIcon() {
     return (
       <Image
         source={require("../../assets/icons/home.png")}
-        style={{ width: 30, height: 30, }}
+        style={{ width: 30, height: 35, }}
       />
     );
 }
@@ -78,7 +80,7 @@ function FavoriteIcon() {
     return (
       <Image
         source={require("../../assets/icons/favorite.png")}
-        style={{ width: 30, height: 30 }}
+        style={{ width: 30, height: 35 }}
       />
     );
 }
@@ -86,7 +88,7 @@ function FavoriteIcon() {
 function MapaIcon() {
     return (
         <View
-        style={{ borderWidth:3, borderColor:'white', borderRadius:100, top: -10}}>
+        style={{ backgroundColor :'#e0dadb', borderRadius:100, top: -10}}>
       <Image
         source={require("../../assets/icons/mapa.png")}
         style={{ width: 65, height: 65}}
@@ -99,7 +101,7 @@ function CartIcon() {
     return (
       <Image
         source={require("../../assets/icons/cart.png")}
-        style={{ width: 30, height: 30 }}
+        style={{ width: 30, height: 35 }}
       />
     );
 }
@@ -108,7 +110,7 @@ function SettingIcon() {
     return (
         <Image
         source={require("../../assets/icons/config.png")}
-        style={{ width: 30, height: 30 }}
+        style={{ width: 30, height: 35 }}
         />
     );
 }

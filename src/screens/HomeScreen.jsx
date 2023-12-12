@@ -2,15 +2,13 @@ import * as React from "react";
 import {
   Text,
   View,
-  TextInput,
   StyleSheet,
   FlatList,
-  SafeAreaView,
   ScrollView,
 } from "react-native";
 import { useState, useEffect } from "react";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import { useDispatch } from 'react-redux';
+import { Searchbar } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
 import {setCategory} from '../actions/platilloActions';
 import CardWithImage from "../components/CardWithImage";
 import CategoryCard from "../components/CategoryCard";
@@ -18,6 +16,10 @@ import PromotionalCard from "../components/PromotionalCard";
 import FoodCard from "../components/FoodCard";
 import { getCategories } from "../services/categories";
 import { colors } from "../utils/palette";
+
+// Trabajar datos con Firebase
+import { getNewPlatillos } from "../services/platillos";
+
 
 const datos = [
   {
@@ -64,139 +66,64 @@ const datos = [
   },
 ];
 
-const productos = [
-  {
-    id: 1,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado pero mas chido que el siguiente",
-    restaurant: "Tutsy food",
-    ranking: 4.9,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-  {
-    id: 2,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado",
-    restaurant: "Tutsy food",
-    ranking: 4.3,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-  {
-    id: 3,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado",
-    restaurant: "Tutsy food",
-    ranking: 4.6,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-  {
-    id: 4,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado",
-    restaurant: "Tutsy food",
-    ranking: 4.9,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-  {
-    id: 5,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado",
-    restaurant: "Tutsy food",
-    ranking: 4.7,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-  {
-    id: 6,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado",
-    restaurant: "Tutsy food",
-    ranking: 4.7,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-  {
-    id: 7,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado",
-    restaurant: "Tutsy food",
-    ranking: 4.4,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-  {
-    id: 8,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado",
-    restaurant: "Tutsy food",
-    ranking: 4.2,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-  {
-    id: 9,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado",
-    restaurant: "Tutsy food",
-    ranking: 4.3,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-  {
-    id: 10,
-    imagen: require("../../assets/platillo.jpg"),
-    title: "Ravioli del Bosque Encantado",
-    restaurant: "Tutsy food",
-    ranking: 5.0,
-    price: "30.00",
-    time: 30,
-    category: "category",
-  },
-];
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   const dispatch = useDispatch();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [category, setCategories] = useState([]);
+  const categories = useSelector((state) => state.platillo.categories);
+
+  const [platillos, setPlatillos] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const onChangeSearch = query => setSearchQuery(query);
+
+  const busquedaCategoria = (categoria) =>{
+    console.log(categoria.id);
+    navigation.navigate('find', {categoria: categoria.id})
+  }
 
   useEffect(() => {
+    // Obtener categorias
     const fetchData = async () => {
       try {
         const result = await getCategories();
         dispatch(setCategory(result))
-        setCategories(result);
+
         //console.log(result);
       } catch (error) {
-        console.error("Error al cargar documentos:", error);
+        console.error("Error al obtener categorias:", error);
       }
     };
 
-    fetchData();
+    // Obtener platillos recien agregados
+    const platillos = async () =>{
+      try {
+        const result = await getNewPlatillos();
+        setPlatillos(result);
+        //console.warn(result);
+      } catch (error) {
+        console.warn("Error al obtener platillos:", error);
+      }
+    }
+
+
+
+    if(categories.length === 0){
+      fetchData();
+    }
+    platillos();
   }, []);
+
   return (
     <ScrollView contentContainerStyle={styles.scroll}>
       {/** Cuadro de busqueda -> exportar como componente */}
-      <View style={styles.search}>
-        <Icon name="search" color="gray" size={20} />
-        <TextInput
-          style={styles.input}
-          placeholder="  Bobba Tea"
+      <Searchbar
+          placeholder="Buscar comida"
+          onChangeText={onChangeSearch}
           value={searchQuery}
-        />
-      </View>
+          elevation ={2}
+          style={{backgroundColor:'white', color: 'black', marginTop: 25}}
+          iconColor = {colors.text.primary}
+      />
 
       <View style={styles.banner}>
         <CardWithImage
@@ -208,12 +135,12 @@ export default function HomeScreen() {
       <View style={styles.seccion_categorias}>
         <Text style={styles.title}>Categorias</Text>
         <FlatList
-          data={category}
+          data={categories}
           horizontal={true} // Configura el desplazamiento horizontal
           contentContainerStyle={styles.contentContainer}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <CategoryCard imageSource={item.data.imagen} title={item.data.text} />
+            <CategoryCard imageSource={item.data.imagen} title={item.data.text} onPress={() => busquedaCategoria(item)}/>
           )}
         />
       </View>
@@ -238,19 +165,19 @@ export default function HomeScreen() {
         />
       </View>
 
-      {/** <FoodCard name={productos[0].title} imageSource={productos[0].imagen} price={productos[0].price} ranking={productos[0].ranking}/>*/}
       <View style={{ margin: 10 }}>
         <Text style={styles.title}>Lo más nuevo</Text>
-        {productos.map((item) => (
+        {platillos.map((item) => (
           <FoodCard
             key={item.id}
             imageSource={item.imagen}
-            title={item.title}
+            title={item.nombre}
             restaurant={item.restaurant}
-            ranking={item.ranking}
-            price={item.price}
-            time={item.time}
-            category={item.category}
+            ranking={item.calificacion}
+            price={item.precio}
+            time={item.tiempo_preparacion}
+            id={item.id}
+            category={categories.find(categoria=> categoria.id == item.categoria.trim()).data.text}
           />
         ))}
       </View>
@@ -271,13 +198,11 @@ const styles = StyleSheet.create({
   },
   search: {
     flexDirection: "row",
-    alignItems: "center",
-    borderRadius: 50,
     paddingHorizontal: 8,
     height: 50,
     width: "100%",
+    marginTop: 15,
     marginBottom: 10,
-    backgroundColor: colors.background.light,
   },
   input: {
     fontSize: 16,

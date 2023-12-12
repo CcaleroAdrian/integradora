@@ -29,4 +29,4 @@ const auth = initializeAuth(app, {
 const db = getFirestore(app);
 const storage = getStorage(app,'gs://changarrito-food-delivery.appspot.com');
 
-export {auth, db, storage}
+export {auth, db, storage, app}

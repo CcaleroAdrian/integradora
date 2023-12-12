@@ -26,7 +26,13 @@
         "googleMaps": {
           "apiKey": "AIzaSyC-gop3ReQ3fq7NtYVZ34CqB7pQ2RPNJfI"
         }
-      }
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE"
+      ],
+      "package": "com.caleroa93.Chg_Movile_App"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -37,7 +43,18 @@
         {
           "locationAlwaysAndWhenInUsePermission": "$(PRODUCT_NAME) quiere acceder a tu ubicación."
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "14c891b6-a118-4697-b25c-841c3559269a"
+      }
+    }
   }
 }

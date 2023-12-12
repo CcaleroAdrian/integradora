@@ -1,17 +1,19 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors } from '../utils/palette';
 
-const CategoryCard = ({ title, imageSource }) => {
+const CategoryCard = ({ title, imageSource, onPress }) => {
   return (
-    <View style={styles.card}>
-      <View style={styles.containerImage}>
-        <Image source={{uri:imageSource}} style={styles.image} />
+    <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
+      <View style={styles.card}>
+        <View style={styles.containerImage}>
+          <Image source={{uri:imageSource}} style={styles.image} />
+        </View>
+        <View style={styles.containerText}>
+          <Text style={styles.title}>{title}</Text>
+        </View>
       </View>
-      <View style={styles.containerText}>
-        <Text style={styles.title}>{title}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

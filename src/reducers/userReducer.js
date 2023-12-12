@@ -2,7 +2,7 @@ import {SET_SIGNIN, SET_LOGOUT, SET_USER, SET_SOCIO} from '../actions/userAction
 
 const initialState = {
     isAuthenticated: true,
-    user : null,
+    user : {id: 'UzZR8VOXkzXPfVVUdtWZt35mVv03'},
     socio: 'pd1P50kEKCu55p8c9RUY'
 };
    
