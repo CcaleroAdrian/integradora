@@ -39,7 +39,7 @@ const CartItem = ({ data, increase, decrement, deleteSelf }) => {
       <View style={styles.containerTrash}>
         <Pressable onPress={() => deleteSelf(data.id)}>
           <Image
-            source={require("../../assets/icons/trash_3.png")}
+            source={require("../../assets/icons/trash.png")}
             style={styles.icon}
           />
         </Pressable>
